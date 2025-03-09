@@ -1,0 +1,25 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "bootstrap": "^5.3.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mime-types": "^2.1.35",
+    "multer": "^1.4.5-lts.1",
+    "nodejs": "file:",
+    "path": "^0.12.7",
+    "pg": "^8.13.1"
+  }
+}

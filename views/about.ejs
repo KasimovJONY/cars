@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avtomir - Avtosalon</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"> -->
+    <script src="https://unpkg.com/akar-icons-fonts"></script>
+    <link rel="icon" type="image/x-icon" href="/public/css/images/favicon.ico">
+    <style>
+        :root {
+            --brand-blue: #1E1B4B;
+        }
+        
+        .bg-brand {
+            background-color: var(--brand-blue) !important;
+        }
+        
+        .text-brand {
+            color: var(--brand-blue) !important;
+        }
+
+        .btn-brand {
+            background-color: var(--brand-blue);
+            color: white;
+        }
+
+        .btn-brand:hover {
+            background-color: #2d2973;
+            color: white;
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(30, 27, 75, 0.9), rgba(30, 27, 75, 0.9)), url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-7QBL71fYKSrpBZTubd7aRgdrLTl7ZR.png');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--brand-blue);
+        }
+        .custom-heading {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        @media (max-width: 576px) { /* sm */
+            .custom-heading { font-size: 1.875rem; } /* 3xl */
+        }
+        @media (min-width: 577px) and (max-width: 768px) { /* md */
+            .custom-heading { font-size: 2.25rem; } /* 4xl */
+        }
+        @media (min-width: 769px) and (max-width: 992px) { /* lg */
+            .custom-heading { font-size: 3rem; } /* 5xl */
+        }
+        @media (min-width: 993px) { /* xl va yuqori */
+            .custom-heading { font-size: 3.75rem; } /* 6xl */
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-brand sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-7QBL71fYKSrpBZTubd7aRgdrLTl7ZR.png" alt="Avtomir Logo" height="40" class="rounded-circle">
+                AVTOMIR
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Asosiy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Biz haqimizda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Aloqa</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container text-center">
+            <h1 class="custom-heading">
+                Xush kelibsiz 'Avtomir' avto saloniga!
+            </h1>
+            <p class=" mx-auto" style="max-width: 700px; font-size: 1.25rem;">
+                Biz eng so'nggi modellar va sifatli avtomobillarni taqdim etamiz.
+            </p>
+            <a href="#about" class="btn btn-light btn-lg">Batafsil ma'lumot</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon "><img src="/public/css/images/sedan-car-model (1).png" alt="Car"width="100px"></div>
+                    <h3>Katta tanlov</h3>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon mb-4"><i class="fa-solid fa-wrench text-black"></i></div>
+                    <h3>Barter xizmatlari</h3>
+                </div>
+                <div class="col-md-4 text-center">
+                    <div class="feature-icon mb-4"><i class="fa-solid fa-map-pin text-black"></i></div>
+                    <h3>Xorazm viloyati, Urganch shahri</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Biz haqimizda</h2>
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <p class="lead">Avtomir avto saloni - bu avtomobillar savdosi va texnik xizmat ko'rsatish markazi. Biz mijozlarimizga eng yaxshi avtomobillarni taklif qilish va ularning ehtiyojlarini qondirish uchun ishlaymiz.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3"><i class="fa-regular fa-square-check text-success"></i></div>
+                            <h3 class="card-title">Keng turdagi avtomobillar</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3"><i class="fa-regular fa-square-check text-success"></i></div>
+                            <h3 class="card-title">Ishonchli xizmat ko'rsatish</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center">
+                            <div class="feature-icon mb-3"><i class="fa-regular fa-square-check text-success"></i></div>
+                            <h3 class="card-title">Tajribali mutaxassislar</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <h2 class="display-6 text-brand">"Avtomir - kelajak uchun tanlov!"</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Aloqa</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <h3 class="card-title mb-4">Bog'lanish uchun</h3>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <strong>📍 Manzil:</strong> Xorazm viloyati, Urganch shahri
+                                </li>
+                                <li class="mb-3">
+                                    <strong>📞 Telefon:</strong> +998 (91) 701-70-00
+                                </li>
+                                <li class="mb-3">
+                                    <strong>📹 YouTube:</strong>
+                                    <a href="https://www.youtube.com/@Avtomirsalonurganch" target="_blank" class="text-brand">
+                                        Avtomir YouTube kanali
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Ismingiz</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Xabar</label>
+                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-brand">Yuborish</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Avtomir. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

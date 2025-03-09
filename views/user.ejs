@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <%- include('includes/links') -%>
+</head>
+<body>
+    <%- include('includes/header') -%>
+    
+    <div class="container">
+        <h1 class="text-center"><h1>Страница пользователья <%= username %></h1></h1>
+        <% if(username.toLowerCase() == 'jony') { %>
+            <ul class="m-auto col-md-2 bg-info text-light p-0 text-center">
+                <% hobbies.forEach((item)=>{ %>
+                    <li class="list-unstyled text-center p-3 text-uppercase fw-bolder"><%= item %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <%- include('includes/links') -%>
+</head>
+<body>
+    <%- include('includes/header') -%>
+    <div class="container">
+        <section id="contact">
+            <div class="container">
+                <h2 class="text-center mb-5">Contact</h2>
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <div class="card border-0 shadow-sm bg-dark text-light">
+                            <div class="card-body">
+                                <h3 class="card-title mb-4">Bog'lanish uchun</h3>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3">
+                                        <strong><i class="fa-solid fa-map-pin"></i> Manzil:</strong> Xorazm viloyati, Urganch shahri
+                                    </li>
+                                    <li class="mb-3">
+                                        <strong><i class="fa-solid fa-phone-flip text-success"></i> Telefon:</strong> +998 (91) 701-70-00
+                                    </li>
+                                    <li class="mb-3">
+                                        <strong><i class="fa-brands fa-youtube text-danger"></i> YouTube:</strong>
+                                        <a href="https://www.youtube.com/@Avtomirsalonurganch" target="_blank" class="text-brand">
+                                            Avtomir YouTube kanali
+                                        </a>
+                                    </li>
+                                    <li class="mb-3">
+                                        <strong><i class="fa-brands fa-telegram text-info"></i> Telegram:</strong>
+                                        <a href="https://www.youtube.com/@Avtomirsalonurganch" target="_blank" class="text-brand">
+                                            Avtomir Telegram kanali
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow-sm bg-dark text-light" >
+                            <div class="card-body">
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Ismingiz</label>
+                                        <input type="text" class="form-control" id="name" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="message" class="form-label">Xabar</label>
+                                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-info">Yuborish</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

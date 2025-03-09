@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <%- include('includes/links') -%>
+</head>
+<body>
+    <%- include('includes/header') -%>
+    <div class="container">
+        <div>
+            <a href="/settings" class="text-decoration-none text-light d-flex align-items-center">
+                <i class="fa-solid fa-angle-left me-1"></i>
+                <span style="margin-bottom: 3px;">Back</span>
+            </a>
+        </div>
+        <div class="d-flex gap-5 ">
+            <div class="w-50">
+                <form action="/add/category" method="post">
+                    <div class="py-3">
+                        <label for="categoryName">Kategoriya</label>
+                        <input type="text" name="categoryName" id="categoryName" class="form-control" required>
+                    </div>
+                    <div class="py-3 float-end">
+                        <button type="submit" class="btn btn-info">Send</button>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="w-50">
+                <h3>Categories</h3>
+                <table class="table table-dark table-bordered border-light py-3" style="background-color: rgb(66 64 64) !important;">
+                    <thead>
+                        <tr>
+                            <th class="col-1">№</th>
+                            <th>Nomi</th>
+                            <th  style="width: 20%;" >Amallar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        let dataCategory = []
+        function getCategories(){
+            fetch(`http://localhost:5000/api/categories`)
+                .then(res => res.json())
+                .then((data)=>{
+                    dataCategory = []
+                    dataCategory = data
+                    createTable(data)
+                })
+        }
+        getCategories()
+        function createTable(data) {
+            let tbody = document.querySelector('#tbody');
+            tbody.innerHTML = '';
+            data.forEach((el, index) => {
+                let row = `<tr>
+                    <td>${index + 1}</td>
+                    <td>${el.name}</td>
+                    <td>
+                        <button class="btn btn-outline-light" onclick="deleteCategory('${el.id}')"><i class="ai-trash-can"></i></button>
+                        <button class="btn btn-outline-light" onclick="editCategory('${el.id}')">
+                            <i class="ai-edit"></i>
+                        </button>
+                    </td>
+                </tr>`
+                tbody.innerHTML += row;
+            });
+        }
+        function deleteCategory(id){
+            console.log(id);
+            fetch(`http://localhost:5000/api/categories/${id}`, {
+                method: 'DELETE', 
+                headers: { 
+                    'Content-type': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then((data)=>{
+                    console.log(data);
+                    getCategories()
+                })
+        }
+
+        function saveCategoryChanges(id){
+            console.log(id);
+            let changedCategory = document.getElementById(`editCategoryname${id}`).value;
+            let data = { categoryName : changedCategory}
+            fetch(`http://localhost:5000/api/categories/${id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-type': 'application/json'
+                },
+                body : JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then((data)=>{
+                    console.log(data);
+                    getCategories()
+                    closeModal(id)
+                })
+        }
+
+        // Modal
+        function editCategory(id){
+            let category = dataCategory.find(cate => cate.id == id)
+            if(!category) return;
+
+            let existingModal = document.getElementById(`Modal${id}`);
+            if (existingModal) {
+                let categorynameInput = existingModal.querySelector("#editCategoryname");
+                categorynameInput.value = cate.name; 
+                new bootstrap.Modal(existingModal).show();
+                return;
+            }
+
+            let modal = document.createElement('div');
+            modal.innerHTML = `
+                <div class="modal fade text-black" id="Modal${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foydalanuvchini tahrirlash</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                                <div class="modal-body">
+                                    <label for="editCategoryame" class="form-label">Yangi nom</label>
+                                    <input type="text" id="editCategoryname${id}" class="form-control" value="${category.name}">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                                    <button type="submit" class="btn btn-primary" onclick="saveCategoryChanges('${id}')">Saqlash</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>`;
+
+            document.body.appendChild(modal);
+            new bootstrap.Modal(document.getElementById(`Modal${id}`)).show();
+        }
+        function closeModal(id) {
+            let modalElement = document.getElementById(`Modal${id}`);
+            let modalInstance = bootstrap.Modal.getInstance(modalElement); 
+            if (modalInstance) {
+                modalInstance.hide(); 
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "nodeJs",
+			"path": "../.."
+		},
+		{
+			"name": "favicon_io",
+			"path": "../../../../Downloads/favicon_io"
+		}
+	],
+	"settings": {}
+}

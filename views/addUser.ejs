@@ -1,0 +1,173 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <%- include('includes/links') -%>
+</head>
+<body>
+    <%- include('includes/header') -%>
+    <div class="container">
+        <div>
+            <a href="/settings" class="text-decoration-none text-light d-flex align-items-center">
+                <i class="fa-solid fa-angle-left me-1"></i>
+                <span style="margin-bottom: 3px;">Back</span>
+            </a>
+        </div>
+        <div class="d-flex gap-5 ">
+            <div class="w-50">
+                <form action="/add/user" method="post">
+                    <div class="py-3">
+                        <label for="userName">Ismi</label>
+                        <input type="text" name="userName" id="userName" class="form-control" required>
+                    </div>
+                    <div class="py-3">
+                        <label for="userPassword">Parol</label>
+                        <input type="text" name="userPassword" id="userPassword" class="form-control" required>
+                    </div>
+                    <div class="py-3 float-end">
+                        <button type="submit" class="btn btn-info">Send</button>
+                    </div>
+                </form>
+                
+            </div>
+            <div class="w-50">
+                <h3>Employees</h3>
+                <table class="table table-dark table-bordered border-light py-3" style="background-color: rgb(66 64 64) !important;">
+                    <thead>
+                        <tr>
+                            <th>Nomi</th>
+                            <th>Parol</th>
+                            <th style="width: 20%;" >Amallar</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        let dataUser = [];
+        function fetchingUsers(){
+            fetch('http://localhost:5000/api/users')
+                .then(res => res.json())
+                .then((data) => {
+                    dataUser = []
+                    dataUser = data
+                   
+                    console.log("data", data);
+                    userTable(data); 
+                })
+                .catch(err => console.error("Xatolik:", err));
+        }
+        fetchingUsers()
+        function userTable(users) {
+            let tbody = document.getElementById('tbody');
+            tbody.innerHTML = ''; 
+            let user = users
+            
+            for (let i = 0; i < user.length; i++) {
+                let row = `<tr>
+                    <td>${user[i].username}</td>
+                    <td>${user[i].password}</td>
+                    <td class="text-center ">
+                        <button class="btn btn-outline-light" onclick="deleteUser('${user[i].id}')"><i class="ai-trash-can"></i></button>
+                        <button class="btn btn-outline-light" onclick="editUser('${user[i].id}')">
+                            <i class="ai-edit"></i>
+                        </button>
+                    </tr>`;
+                tbody.innerHTML += row; 
+            }
+        }
+        function deleteUser(id){
+            fetch(`http://localhost:5000/api/users/${id}`,{
+                method: 'DELETE', 
+                headers: { 
+                    'Content-type': 'application/json'
+                }
+            })
+            .then(res => res.json()) 
+            .then((data)=>{
+                console.log(data);
+                fetchingUsers();
+            })
+        }
+        // EDIT
+        function saveUserChanges(id){
+            let editUserName = document.getElementById(`editUsername${id}`).value;
+            let editUserPassword = document.getElementById(`editUserPassword${id}`).value;
+            let data = {
+                username : editUserName,
+                password: editUserPassword
+            };
+            console.log(id);
+            try{
+                fetch(`http://localhost:5000/edit/users/${id}`,{
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(res => res.json())
+                .then((data)=>{
+                    console.log(data);
+                    fetchingUsers()
+                    closeModal(id)
+                })
+                .catch(err => console.error("Fetch Error:", err));
+            } catch(error){
+                console.error("Error:",error);
+            }
+        }
+
+        // Modal
+        function editUser(id){
+            let user = dataUser.find(user => user.id == id)
+            if(!user) return;
+
+            let existingModal = document.getElementById(`Modal${id}`);
+            if (existingModal) {
+                let usernameInput = existingModal.querySelector("#editUsername");
+                usernameInput.value = user.username; 
+                new bootstrap.Modal(existingModal).show();
+                return;
+            }
+
+            let modal = document.createElement('div');
+            modal.innerHTML = `
+                <div class="modal fade text-black" id="Modal${id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Foydalanuvchini tahrirlash</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                                <div class="modal-body">
+                                    <label for="editUsername" class="form-label">Yangi nom</label>
+                                    <input type="text" id="editUsername${id}" class="form-control" value="${user.username}">
+                                    <label for="editUserPassword" class="form-label">Yangi parol</label>
+                                    <input type="text" id="editUserPassword${id}" class="form-control" value="${user.password}">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bekor qilish</button>
+                                    <button type="submit" class="btn btn-primary" onclick="saveUserChanges('${id}')">Saqlash</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>`;
+
+            document.body.appendChild(modal);
+            new bootstrap.Modal(document.getElementById(`Modal${id}`)).show();
+        }
+        function closeModal(id) {
+            let modalElement = document.getElementById(`Modal${id}`);
+            let modalInstance = bootstrap.Modal.getInstance(modalElement); 
+            if (modalInstance) {
+                modalInstance.hide(); 
+            }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <%- include('includes/links') -%>
+</head>
+<body>
+    <%- include('includes/header') -%>
+    <div class="container">
+        <h2>Settings</h2>
+        <div class="row g-3"> <!-- Row ichidagi card-lar orasidagi bo‘shliqni to‘g‘riladik -->
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card bg-secondary border-3 d-flex flex-row align-items-center">
+                    <a href="/add-users" class="text-decoration-none text-light d-flex align-items-center w-100">
+                        <div class="iconCon ">
+                            <i class="fa-solid fa-user-plus icon"></i>
+                        </div>
+                        <div class="card-body p-0">Add Employee</div>
+                    </a>
+                </div>
+            </div>
+    
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card bg-secondary border-3 d-flex flex-row align-items-center">
+                    <a href="/addCategory" class="text-decoration-none text-light d-flex align-items-center w-100">
+                        <div class="iconCon ">
+                            <i class="fa-solid fa-list"></i>
+                        </div>
+                        <div class="card-body p-0">Add Category</div>
+                    </a>
+                </div>
+            </div>
+    
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card bg-secondary border-3 d-flex flex-row align-items-center ">
+                    <a href="/addCars" class="text-decoration-none text-light d-flex align-items-center w-100">
+                        <div class="iconCon">
+                            <i class="fa-solid fa-car"></i>
+                            <b style="margin-bottom: 5px;">+</b>
+                        </div>
+                        <div class="card-body p-0">Add Cars</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
